@@ -1,0 +1,11 @@
+{
+  "name": "SpaceXLikeLaunchSystem",
+  "repository": "tytusmastah/LaunchSystemAnimation",
+  "version": "0.0.1",
+  "devDependencies": {
+    "p5": "*",
+    "ccapture.js": "*"
+  },
+  "license": "LGPL-2.1",
+  "homepage": "https://github.com/tytusmastah/LaunchSystemAnimation/README.md"
+}
