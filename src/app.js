@@ -12,6 +12,7 @@ let time = config.timeStart;
 let frame = 0;
 let points = []; //filtered list of points on timeline
 let saved = false;
+let started = false;
 
 
 var pypec = 3;
@@ -21,11 +22,16 @@ var density;
 var curMouseX = 0;
 var timeMove = 0;
 
+var canvas;
+var framesdiv;
+
 
 
 
 function setup() {
+    console.log("Setup");
     createCanvas(resx, resy);
+    console.log("Canvas created");
     density = PI + HALF_PI; // 3/4 of circle
 
     //set Font
@@ -41,6 +47,7 @@ function setup() {
         cposy = radius * 2.5;
     }
 
+    console.log("Setup points");
     //configure points
     cpoints.forEach((point) => {
         if (!point.time) {
@@ -57,6 +64,7 @@ function setup() {
         }
     });
 
+    console.log("Setup subtitles");
     //configure subtitles
     subs.forEach((s) => {
         s.start[3] = s.start[2] + s.start[1] * 60 + s.start[0] * 60 * 60;
@@ -66,8 +74,12 @@ function setup() {
         }
     });
 
+
     //configure capture to movie
     if (config.record) {
+        canvas = document.getElementById('defaultCanvas0')
+        framediv = document.getElementById('frames');
+        console.log("Setup recording");
         frameRate(config.fps);
         capturer = new CCapture({
             format: 'webm',
@@ -75,10 +87,10 @@ function setup() {
             framerate: config.fps,
             name: config.filename,
             // motionBlurFrames: 0.5,
-            quality: 1.0
+            quality: 100.0
         });
-        capturer.start();
     }
+    console.log("Finish setup");
 }
 
 
@@ -88,7 +100,7 @@ function drawBigCircle() {
     strokeWeight(2.5);
     circle(middle, cposy, radius * 2); //main circle
     stroke(255);
-    arc(middle, cposy, radius * 2, radius * 2, 0, -HALF_PI); //passed time arc
+    arc(middle, cposy, radius * 2, radius * 2, -PI, -HALF_PI); //passed time arc
     strokeWeight(1);
     line(middle, cposy - radius - pypec, middle, cposy - radius + pypec);  //border of passed time
     strokeWeight(2);
@@ -152,6 +164,9 @@ function drawPoint(point) {
 
     x += middle;
     y += cposy;
+    if (y>resy*1.1){ //point below the half of circle - don't draw it to speedup
+        return;
+    }
 
     //calculate position of indicator on point
     var linex0, linex1, liney0, liney1
@@ -220,12 +235,11 @@ function handleTime() {
         if (config.record) { 
             time = frame / config.fps;
             frame++;
-            capturer.capture(document.getElementById('defaultCanvas0'));
+            capturer.capture(canvas);
+            framediv.innerHTML = (Math.floor(time));
         } else { //count time beside of recording
             time = millis() * fast + timeMove;
-            console.log(time.toFixed());
         }
-        console.log(time.toFixed());
     } else {
         if (!saved && config.record) {
             capturer.stop();
@@ -236,6 +250,11 @@ function handleTime() {
 }
 
 function draw() {
+    if (config.record && !started){
+        started = true;
+        capturer.start();
+        console.log("Capturer started");
+    }
     background(0);
     if (!config.record || config.test) {
         drawTimer();
@@ -253,7 +272,16 @@ function mouseDragged(event) {
     if (curMouseX == 0) {
         curMouseX = event.clientX;
     }
-    timeMove += (event.layerX - curMouseX);
+    timeMove += (event.clientX - curMouseX);
     time = millis() * fast + timeMove;
-    curMouseX = event.layerX;
+    curMouseX = event.clientX;
+}
+
+function mouseReleased(){
+    curMouseX = 0;
+}
+
+function doubleClicked(){
+    curMouseX = 0; 
+    timeMove-=time;
 }
