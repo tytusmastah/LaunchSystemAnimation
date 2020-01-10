@@ -112,6 +112,18 @@ function draw() {
     stroke(40);
     circle(middle, cposy, radius * 2 - 60);
 
+    if (!config.record || config.test){
+        var h = Math.floor(time/60/60);
+        var m = Math.floor((time - h*60*60)/60);
+        var s = Math.floor(time - h*60*60 - m*60);
+        var t = "Time: " + h + ":" + m + ":" + s; 
+        stroke(255);
+        fill(255);
+        textAlign(LEFT, CENTER);
+        textSize(20);
+        text(t, 0, 20)
+    }
+
 
     //Subtitle
     strokeWeight(1);
