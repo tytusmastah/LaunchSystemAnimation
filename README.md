@@ -6,3 +6,7 @@ This code can save movie with such animation which can be added later to any mov
 
 ## Configuration
 See comments in `config/data.js` file
+
+## Example
+
+![Example of output](imgs/screenshoot.png)
