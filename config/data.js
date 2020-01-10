@@ -3,6 +3,7 @@
 let config = {
     record: false,      //swith recording on - uses capture.js and works under Chrome only. As a result webm file will be saved
     test: false,         //swith testing on - displays smaller and more visible circle of timeline, time goes faster
+    filename: "test",   //filename to save movie
     timeStart: 0,       //start time in seconds - should be left as 0
     timeEnd: 1400,      //end time in senconds - how long timeline will be animated
     density: 6,         //unused
