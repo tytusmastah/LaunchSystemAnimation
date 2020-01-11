@@ -113,6 +113,7 @@ function drawSubitile() {
     subs.forEach(s => {
         if (s.start[3] <= time && s.end[3] >= time) {
             var color = 255;
+            var linecolor = 128;
 
             //fade-in, fade-out
             if (s.end[3] - s.start[3] > 10) {
@@ -123,8 +124,7 @@ function drawSubitile() {
                 }
             }
 
-
-            stroke(color);
+            stroke(linecolor);
             fill(color);
             textSize(s.size);
             textAlign(CENTER, CENTER);
@@ -147,7 +147,7 @@ function drawTimer() {
 
 function drawPoints() {
     points.forEach((point) => {
-        drawPoint(point)
+        drawPoint(point);
     });
 }
 
@@ -177,8 +177,8 @@ function drawPoint(point) {
         linestart = -4;
         lineend = -6;
     } else {
-        linestart = 0;
-        lineend = 0;
+        linestart = -3;
+        lineend = -3;
     }
     linex0 = (radius + linestart) * fractionx + middle;
     liney0 = (radius + linestart) * fractiony + cposy;
@@ -205,6 +205,7 @@ function drawPoint(point) {
         rotate(pt * density / alltime, [radius]);
         translate(0, -radius + (15 * point.pos));
         textSize(point.size);
+        
         text(point.title, 0, 0)
         resetMatrix();
     } else {
@@ -223,6 +224,7 @@ function drawPoint(point) {
         translate(middle, cposy);
         rotate(pt * density / alltime, [radius]);
         translate(0, -radius + (15 * point.pos));
+        stroke(128);
         textSize(point.size);
         text(point.title, 0, 0);
         resetMatrix();
@@ -250,12 +252,15 @@ function handleTime() {
 }
 
 function draw() {
+    // console.log("draw");
     if (config.record && !started){
         started = true;
         capturer.start();
         console.log("Capturer started");
     }
     background(0);
+    //  background('rgba(0,0,0,0.1)');
+    // background('rgba(0,0,0,1)');
     if (!config.record || config.test) {
         drawTimer();
     }
