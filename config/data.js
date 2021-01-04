@@ -1,6 +1,7 @@
 
 //Main configuration (behaviour)
 let config = {
+    multiplicationFactor:1, //change resolution to achieve better antialiasing 
     record: false,      //swith recording on - uses capture.js and works under Chrome only. As a result webm file will be saved
     test: false,         //swith testing on - displays smaller and more visible circle of timeline, time goes faster
     filename: "test",   //filename to save movie
@@ -16,6 +17,8 @@ let config = {
     bigCirclePosY: 1400,        //center of big circle
     subtitlePos: 700,           //position of subtitles
     fps: 10,                    //number of frames per seconds on movie
+    format: 'png',              //output file format: webm - webm, png - set of pngs with transparent background
+    mainShape: "circle"         //shape of launcher available options: circle, hline, sin, curved
 }
 
 
@@ -55,3 +58,16 @@ let csubtitles = [
         { start: [0, 0, 0], end: [0, 0, 4], text: "Instant message (<10 sek)", size: 12 },
         { start: [0, 0, 10], end: [0, 0, 24], text: "Faded message (>10 sek)" }
     ];
+
+/**
+ * Second list of subtitles
+ * parameters: 
+ *  start - table with hour, minutes and seconds of start
+ *  end - as above - for end. 
+ *  size - size of font of subtitle
+ *  text - text of subtitle
+ */    
+let csubtitles2 = [
+    { start: [0, 0, 24], end: [0, 0, 61], text: "see scubtitles" },        
+    { start: [0, 3, 56], end: [0, 3, 58], text: "Jestem kucharzeeeem" }       
+}
