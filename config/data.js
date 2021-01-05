@@ -70,4 +70,4 @@ let csubtitles = [
 let csubtitles2 = [
     { start: [0, 0, 24], end: [0, 0, 61], text: "see scubtitles" },        
     { start: [0, 3, 56], end: [0, 3, 58], text: "Jestem kucharzeeeem" }       
-}
+];

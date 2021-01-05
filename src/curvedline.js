@@ -1,5 +1,5 @@
-var arclen = 200*multiplactionFactor;
-var arcradius = 350*multiplactionFactor;
+var arclen = 200*multiplicationFactor;
+var arcradius = 350*multiplicationFactor;
 
 /** Draws line */
 function drawCurvedLine(){
@@ -7,8 +7,8 @@ function drawCurvedLine(){
     stroke(128);
     stroke(128);
     strokeWeight(2.5);
-    line(middle-10, lposy, config.screenResolutionX*multiplactionFactor, lposy);
-    // arc(config.screenResolutionX*multiplactionFactor-arclen, lposy-arcradius, arcradius*multiplactionFactor, arcradius*multiplactionFactor, 2*PI, HALF_PI);
+    line(middle-10, lposy, config.screenResolutionX*multiplicationFactor, lposy);
+    // arc(config.screenResolutionX*multiplicationFactor-arclen, lposy-arcradius, arcradius*multiplicationFactor, arcradius*multiplicationFactor, 2*PI, HALF_PI);
 
     stroke(255);
     line(arclen,lposy,middle, lposy);
@@ -38,8 +38,8 @@ function pointCurvedLine(s, point){
         // (y/arclen)^2=1-(x/arclen)^2
         // y^2=(1-(x/arclen)^2)*arclen^2
     }
-    if (s.x > config.screenResolutionX*multiplactionFactor-arclen){
-        s.dx = arclen - (config.screenResolutionX*multiplactionFactor -s.x);
+    if (s.x > config.screenResolutionX*multiplicationFactor-arclen){
+        s.dx = arclen - (config.screenResolutionX*multiplicationFactor -s.x);
         s.dy = arcradius - sqrt(arcradius*arcradius-(s.dx*s.dx));
         s.y = lposy - s.dy
     }
@@ -61,12 +61,12 @@ function translateCurvedLine(s, point){
         translate(s.x,s.y-15*point.pos); //początek układu współrzędnych pod albo nad puktem
         rotate(Math.asin((s.dx)/arcradius)); //przekręcenie tekstu, który będzie wypisany w nowym 0,0
     }
-    else if (s.x > config.screenResolutionX*multiplactionFactor-arclen 
-        && s.x < config.screenResolutionX*multiplactionFactor+100){
+    else if (s.x > config.screenResolutionX*multiplicationFactor-arclen 
+        && s.x < config.screenResolutionX*multiplicationFactor+100){
         translate(s.x,s.y-15*point.pos);
         rotate(5*Math.asin((s.dx)/arcradius));
     }
-    else if (s.x >= config.screenResolutionX*multiplactionFactor + 100){
+    else if (s.x >= config.screenResolutionX*multiplicationFactor + 100){
         translate(-400, -400);
     }else{
         translate(middle, s.y);

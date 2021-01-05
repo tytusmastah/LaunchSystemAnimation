@@ -1,16 +1,16 @@
 function drawBigCircle() {
     noFill();
     stroke(128);
-    strokeWeight(2.5*multiplactionFactor);
+    strokeWeight(2.5*multiplicationFactor);
     circle(middle, cposy, radius * 2); //main circle
     stroke(255);
     arc(middle, cposy, radius * 2, radius * 2, -PI, -HALF_PI); //passed time arc
-    strokeWeight(1*multiplactionFactor);
-    line(middle, cposy - radius - pypec*multiplactionFactor, middle, cposy - radius + pypec*multiplactionFactor);  //border of passed time
-    strokeWeight(2*multiplactionFactor);
+    strokeWeight(1*multiplicationFactor);
+    line(middle, cposy - radius - pypec*multiplicationFactor, middle, cposy - radius + pypec*multiplicationFactor);  //border of passed time
+    strokeWeight(2*multiplicationFactor);
     stroke(128);
     fill('rgba(40, 40, 40, 0.2)');
-    circle(middle, cposy, radius * 2 - 60*multiplactionFactor); //big circle in a middle
+    circle(middle, cposy, radius * 2 - 60*multiplicationFactor); //big circle in a middle
 }
 
 
@@ -41,5 +41,5 @@ function pointCircle(s, point){
 function translateCircle(s, point){
     translate(middle, cposy);
     rotate(s.pt * density / alltime, [radius]);
-    translate(0, -radius + (15*multiplactionFactor * point.pos));
+    translate(0, -radius + (15*multiplicationFactor * point.pos));
 }

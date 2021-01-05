@@ -1,12 +1,12 @@
 //copy from config to globals
 let multiplicationFactor = config.multiplicationFactor?config.multiplicationFactor:1;
-let resx = config.screenResolutionX*multiplactionFactor;
-let resy = config.screenResolutionY*multiplactionFactor;
-var cposy = config.bigCirclePosY*multiplactionFactor; //1400; //y srodka kola glownego
-var lposy = 650*multiplactionFactor;
+let resx = config.screenResolutionX*multiplicationFactor;
+let resy = config.screenResolutionY*multiplicationFactor;
+var cposy = config.bigCirclePosY*multiplicationFactor; //1400; //y srodka kola glownego
+var lposy = 650*multiplicationFactor;
 let fast = config.speed;
 let alltime = config.timeEnd;
-let radius = config.bigCircleRadius*multiplactionFactor;
+let radius = config.bigCircleRadius*multiplicationFactor;
 let subs = csubtitles;
 let subs2 = csubtitles2;
 
@@ -21,7 +21,7 @@ let format = ((config.format=='webm')?"webm":"png");
 
 
 
-var pypec = 3*multiplactionFactor;
+var pypec = 3*multiplicationFactor;
 var middle = resx / 2; //middle of screen
 var capturer;
 var density;
@@ -63,7 +63,7 @@ function setup() {
                 ((point.times) ? point.times : 0);
         }
         if (!point.size){
-            point.size = config.defaultTextSize*multiplactionFactor;
+            point.size = config.defaultTextSize*multiplicationFactor;
         }
         if (point.time <= config.timeEnd + 2) {
             points.push(point);
@@ -76,7 +76,7 @@ function setup() {
         s.start[3] = s.start[2] + s.start[1] * 60 + s.start[0] * 60 * 60;
         s.end[3] = s.end[2] + s.end[1] * 60 + s.end[0] * 60 * 60;
         if (!s.size) {
-            s.size = config.defaultSubtitleSize*multiplactionFactor;
+            s.size = config.defaultSubtitleSize*multiplicationFactor;
         }
     });
 
@@ -86,7 +86,7 @@ function setup() {
             s.start[3] = s.start[2] + s.start[1] * 60 + s.start[0] * 60 * 60;
             s.end[3] = s.end[2] + s.end[1] * 60 + s.end[0] * 60 * 60;
             if (!s.size) {
-                s.size = config.defaultSubtitle2Size*multiplactionFactor;
+                s.size = config.defaultSubtitle2Size*multiplicationFactor;
             }
         });
     }
@@ -151,9 +151,9 @@ function drawSubitile() {
 
             stroke(linecolor);
             fill(color);
-            textSize(s.size*multiplactionFactor);
+            textSize(s.size*multiplicationFactor);
             textAlign(CENTER, CENTER);
-            text(s.text, middle, config.subtitlePos*multiplactionFactor);
+            text(s.text, middle, config.subtitlePos*multiplicationFactor);
         };
     });
 
@@ -189,7 +189,7 @@ function drawSubitile() {
                 fill(c);
                 textSize(s.size);
                 textAlign(CENTER, CENTER);
-                text(s.text, middle, config.subtitle2Pos*multiplactionFactor);
+                text(s.text, middle, config.subtitle2Pos*multiplicationFactor);
             };
         });
     }
@@ -216,14 +216,14 @@ function drawPoints() {
 function indicatorOnPoint(point){
     s2 = {};
     if (point.pos < 0) {
-        s2.linestart = 4*multiplactionFactor;
-        s2.lineend = 6*multiplactionFactor;
+        s2.linestart = 4*multiplicationFactor;
+        s2.lineend = 6*multiplicationFactor;
     } else if (point.pos > 0) {
-        s2.linestart = -4*multiplactionFactor;
-        s2.lineend = -6*multiplactionFactor;
+        s2.linestart = -4*multiplicationFactor;
+        s2.lineend = -6*multiplicationFactor;
     } else {
-        s2.linestart = -3*multiplactionFactor;
-        s2.lineend = -3*multiplactionFactor;
+        s2.linestart = -3*multiplicationFactor;
+        s2.lineend = -3*multiplicationFactor;
     }
     return s2;
 }
@@ -238,12 +238,12 @@ function drawPoint(point) {
     //draw point before
     if (time < point.time) {
         fill(0);
-        strokeWeight(1*multiplactionFactor);
+        strokeWeight(1*multiplicationFactor);
         stroke(200);
         if (point.time - time < 3) {
             stroke(230);
         }
-        circle(s.x, s.y, 8*multiplactionFactor); //point itself
+        circle(s.x, s.y, 8*multiplicationFactor); //point itself
 
         line(s.linex0, s.liney0, s.linex1, s.liney1); //indicator on point
 
@@ -259,14 +259,14 @@ function drawPoint(point) {
     } else {
         //draw point after
         stroke(255);
-        strokeWeight(1*multiplactionFactor);
+        strokeWeight(1*multiplicationFactor);
         fill(0);
-        circle(s.x, s.y, 8*multiplactionFactor); //point inself
+        circle(s.x, s.y, 8*multiplicationFactor); //point inself
 
         line(s.linex0, s.liney0, s.linex1, s.liney1); //point indicator
 
         fill(255);
-        circle(s.x, s.y, 2*multiplactionFactor); //dot in a point
+        circle(s.x, s.y, 2*multiplicationFactor); //dot in a point
 
         //point titles
         switchShape(s, point, translateCircle, translateHorizontalShape, null, translateCurvedLine);

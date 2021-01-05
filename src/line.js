@@ -3,7 +3,7 @@ function drawHorizontalLine(){
     stroke(128);
     stroke(128);
     strokeWeight(2.5);
-    line(middle-10, lposy, config.screenResolutionX*multiplactionFactor, lposy);
+    line(middle-10, lposy, config.screenResolutionX*multiplicationFactor, lposy);
     stroke(255);
     line(0,lposy,middle, lposy);
     strokeWeight(2);
