@@ -1,5 +1,25 @@
-var arclen = 200*multiplicationFactor;
-var arcradius = 350*multiplicationFactor;
+var arclen = 200*config.multiplicationFactor;
+var arcradius = 350*config.multiplicationFactor;
+
+
+class Curved{
+    draw() {
+        drawCurvedLine();
+    }
+
+    point(s, point) {
+        pointCurvedLine(s, point);
+    }
+
+    translate(s, point){
+        translateCurvedLine(s, point);
+    }
+
+    subtitle(){
+        drawSubtitle();
+    }
+}
+
 
 /** Draws line */
 function drawCurvedLine(){
@@ -26,7 +46,7 @@ function drawCurvedLine(){
  */
 function pointCurvedLine(s, point){
     //calculate position of point
-    s.pt = point.time - time;
+    s.pt = point.time - time.time;
     s.x = s.pt * density + middle;
     s.y = lposy
 

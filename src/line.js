@@ -1,3 +1,23 @@
+class HorizontalLine{
+    draw() {
+        drawHorizontalLine();
+    }
+
+    point(s, point) {
+        pointHorizontalShape(s, point);
+    }
+
+    translate(s, point){
+        translateHorizontalShape(s, point);
+    }
+
+    subtitle(){
+        drawSubtitle();
+    }
+}
+
+
+
 function drawHorizontalLine(){
     noFill()
     stroke(128);
@@ -16,7 +36,7 @@ function drawHorizontalLine(){
 
 function pointHorizontalShape(s, point){
     //calculate position of point
-    s.pt = point.time - time;
+    s.pt = point.time - time.time;
     s.x = s.pt * density + middle;
     s.y = lposy
 

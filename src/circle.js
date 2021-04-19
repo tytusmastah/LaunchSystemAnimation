@@ -1,3 +1,21 @@
+class BigCircle{
+    draw() {
+        drawBigCircle();
+    }
+
+    point(s, point) {
+        pointCircle(s, point);
+    }
+
+    translate(s, point){
+        translateCircle(s, point);
+    }
+
+    subtitle(){
+        drawSubtitle();
+    }
+}
+
 function drawBigCircle() {
     noFill();
     stroke(128);
@@ -16,9 +34,9 @@ function drawBigCircle() {
 
 function pointCircle(s, point){
     //calculate position of point
-    s.pt = point.time - time; //position of point in relation to current time
-    s.fractionx = sin(s.pt * density / alltime); //rotation of point X
-    s.fractiony = -cos(s.pt * density / alltime); //rotation of point Y
+    s.pt = point.time - time.time; //position of point in relation to current time
+    s.fractionx = sin(s.pt * density / time.alltime); //rotation of point X
+    s.fractiony = -cos(s.pt * density / time.alltime); //rotation of point Y
     s.x = radius * s.fractionx; //position X on a circle of point
     s.y = radius * s.fractiony; //position Y on a circle of point
 
@@ -40,6 +58,6 @@ function pointCircle(s, point){
 
 function translateCircle(s, point){
     translate(middle, cposy);
-    rotate(s.pt * density / alltime, [radius]);
+    rotate(s.pt * density / time.alltime, [radius]);
     translate(0, -radius + (15*multiplicationFactor * point.pos));
 }
