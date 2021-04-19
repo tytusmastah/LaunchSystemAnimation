@@ -63,19 +63,29 @@ class LeftLine{
 
     textsize2(curtime, point){
         var offset = curtime - point.time;
-        var chg = Math.pow(2, -offset*offset/140)*0.3+0.7; 
+        var chg = Math.pow(2, -offset*offset/540)*0.4+0.6; 
         // console.log("point size: " + point.size + " , chg: " + chg);
         return point.size*chg;
     }
 
-    yposition(t, curtime){
+    yposition(t, curtime, point){
         // var chg=time*(1+Math.pow(1.0001, (-(curtime-time)*(curtime-time))));
         var offset = t-curtime; 
         // var chg = time+offset*(Math.pow(2, -offset*offset/2000 - 1)+0.5);
         // var chg = 20*Math.pow(2, -(Math.pow(Math.abs(offset)-100, 2)/1400)); 
         // var chg = 20*Math.pow(2, -offset*offset/1400);
         var chg = offset*Math.pow(2, -offset*offset/1400);
-        return this.free+this.maxheight - ((t+chg)*this.maxheight)/time.alltime;
+        var yposabsolute = t+chg; 
+        // console.log("yposabsolute: " + yposabsolute);
+
+        if (yposabsolute<0){ //don't display below start point. 
+            yposabsolute=0;
+        }
+        if (point && point.index === 0){
+            debugText = yposabsolute;             
+        }
+        var retVal = this.free+this.maxheight - ((yposabsolute)*this.maxheight)/time.alltime;
+        return retVal;
     }
 
 
@@ -84,10 +94,10 @@ class LeftLine{
     drawLineLeft(){
         noFill()
         stroke(128);
-        strokeWeight(3*this.mf); //TODO - round finish. 
+        strokeWeight(3*this.mf); 
         line(30*this.mf, (config.screenResolutionY - this.free)*this.mf, 30*this.mf, this.free*this.mf);
         stroke(255);
-        strokeWeight(5); //TODO - round finish. 
+        strokeWeight(5); 
         var transposedpos = this.yposition(time.time, time.time)*this.mf; 
         line(30*this.mf, (config.screenResolutionY - this.free)*this.mf, 30*this.mf, transposedpos);
     }
@@ -96,7 +106,7 @@ class LeftLine{
         //calculate position of point
         s.pt = point.time - time.time;
         s.x = 30*this.mf;
-        s.y = this.yposition(point.time, time.time)*this.mf;
+        s.y = this.yposition(point.time, time.time, point)*this.mf;
 
         s2 = indicatorOnPoint(point);
 

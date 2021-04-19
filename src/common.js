@@ -67,12 +67,13 @@ function drawTimer() {
     var m = Math.floor((time.time - h * 60 * 60) / 60);
     var s = Math.floor(time.time - h * 60 * 60 - m * 60);
     // console.log("time: " + time.time);
-    var t = "Time: " + h + ":" + m + ":" + s;
+    var t = "Time: " + h + ":" + m + ":" + s + "  -   " + debugText;
     stroke(255);
     fill(255);
     textAlign(LEFT, CENTER);
     textSize(20);
     text(t, 0, 20)
+
 }
 
 function drawPoints() {
@@ -153,43 +154,7 @@ function drawPoint(point) {
     }
 }
 
-class TimeHandler{
-    time; 
-    alltime;
-    frame; 
-    fast; 
-    timeMove; 
-    curMouseX;
 
-    constructor(){
-        this.frame=0;
-        this.time=config.timeStart;
-        this.alltime=config.timeEnd;
-        this.fast = config.speed; 
-        this.timeMove = 0;
-        this.curMouseX = 0;
-    }
-
-    handleTime(){
-        if (this.time < this.alltime) {
-            //count time during recording
-            if (config.record) { 
-                this.time = this.frame / config.fps;
-                this.frame++;
-                capturer.capture(canvas);
-                framediv.innerHTML = (Math.floor(time));
-            } else { //count time beside of recording
-                this.time = millis() * this.fast + this.timeMove; 
-            }
-        } else {
-            if (!saved && config.record) {
-                capturer.stop();
-                capturer.save();
-                saved = true;
-            }
-        }
-    }
-}
 
 
 class PointHandler{

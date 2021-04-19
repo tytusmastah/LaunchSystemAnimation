@@ -26,6 +26,7 @@ var capturer;
 var density;
 // var curMouseX = 0;
 // var timeMove = 0;
+var debugText =""; //text to display at timer.
 
 var canvas;
 var framesdiv;
@@ -62,6 +63,7 @@ function setup() {
 
     console.log("Setup points");
     //configure points
+    var index = 0; 
     cpoints.forEach((point) => {
         if (!point.time) {
             point.time =
@@ -75,6 +77,8 @@ function setup() {
         if (point.time <= config.timeEnd + 2) {
             points.push(point);
         }
+        point.index = index; 
+        index++;
     });
 
     console.log("Setup subtitles");
