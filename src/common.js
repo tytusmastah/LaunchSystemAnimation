@@ -19,7 +19,7 @@ function drawSubtitle() {
             fill(color);
             textSize(s.size*multiplicationFactor);
             textAlign(CENTER, CENTER);
-            text(s.text, middle, config.subtitlePos*multiplicationFactor);
+            text(s.text, subtitleXPos, config.subtitlePos*multiplicationFactor);
         };
     });
 
@@ -107,9 +107,16 @@ function drawPointText(point){
 }
 
 function drawPoint(point) {
+    if (!point){
+        throw {text: "Exeption in drawPoint", point: point};
+    }
     var s={};
 
     method.point(s, point);
+
+    if (!s || s.linex0 == undefined || s.linex0 == null){
+        throw {text: "Exception in drawPoint", s: s};
+    }
 
 
     // switchShape(s, point, pointCircle, pointHorizontalShape, null, pointCurvedLine, null);

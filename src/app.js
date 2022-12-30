@@ -22,6 +22,7 @@ let format = ((config.format=='webm')?"webm":"png");
 
 var pypec = 3*multiplicationFactor;
 var middle = resx / 2; //middle of screen
+var subtitleXPos = middle;
 var capturer;
 var density;
 // var curMouseX = 0;
@@ -141,6 +142,9 @@ function switchShape(a, b, c, h, s, cv, ll){
             break;
         case "lineleft": 
             method = new LeftLine();
+            break;
+        case "arc":
+            method = new Arc();
             break;
     }
 }
