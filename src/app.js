@@ -146,6 +146,9 @@ function switchShape(a, b, c, h, s, cv, ll){
         case "arc":
             method = new Arc();
             break;
+        case "bulk":
+            method = new Bulk(cpoints);
+            break;
     }
 }
 
