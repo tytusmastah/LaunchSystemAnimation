@@ -19,7 +19,7 @@ function drawSubtitle() {
             fill(color);
             textSize(s.size*multiplicationFactor);
             textAlign(CENTER, CENTER);
-            text(s.text, subtitleXPos, config.subtitlePos*multiplicationFactor);
+            text(s.text, subtitleXPos*multiplicationFactor, config.subtitlePos*multiplicationFactor);
         };
     });
 

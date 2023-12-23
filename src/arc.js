@@ -27,7 +27,7 @@ class Arc{
         subtitleXPos = config.subtitlePosX;
         console.log("cposy: " + cposy); 
         console.log("this: ", this);
-        radius = config.bigCircleRadius;
+        radius = config.bigCircleRadius*multiplicationFactor;
     }
 
     drawLeftArc() {
@@ -42,7 +42,7 @@ class Arc{
         strokeWeight(2*multiplicationFactor);
         stroke(128);
         fill('rgba(40, 40, 40, 0.2)');
-        arc(config.screenResolutionX, cposy, radius*2, radius*2/3, -PI, 0); //right arc
+        arc(config.screenResolutionX*multiplicationFactor, cposy, radius*2, radius*2/3, -PI, 0); //right arc
     }
 
 
@@ -58,7 +58,7 @@ class Arc{
         s.y += cposy;
 
 
-        if (s.x<-10*config.multiplicationFactor || s.y>config.screenResolutionY+10*multiplicationFactor){ //point below the half of circle - don't draw it to speedup
+        if (s.x<-10*multiplicationFactor || s.y>config.screenResolutionY*multiplicationFactor+10*multiplicationFactor){ //point below the half of circle - don't draw it to speedup
             s.linex0=s.linex1=s.liney0=s.liney1=s.linex2=s.liney2=-200;
             return;
         }
