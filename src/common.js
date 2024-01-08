@@ -97,14 +97,17 @@ function indicatorOnPoint(point){
     return s2;
 }
 
-function drawPointText(point){
+function drawPointText(point, str){
+    if (!str) str=128;
     //point titles
     textAlign(CENTER, CENTER);
     stroke(128);
-    fill(255);    
+    fill(str);    
     textSize(point.size);
     text(point.title, 0, 0)
 }
+
+
 
 function drawPoint(point) {
     if (!point){
