@@ -44,7 +44,7 @@ let cpoints =  [
     { timeh: 0, timem: 14, times: 54, title: "Komunikacja", pos: -1 },
     { timeh: 0, timem: 17, times: 50, title: "Wychowanie fizyczne", pos: -1 },
     { timeh: 0, timem: 18, times: 54, title: "Internety", pos: -1 },
-    { timeh: 0, timem: 20, times: 01, title: "KONIEC", pos: 1 },
+    { timeh: 0, timem: 20, times: 1, title: "KONIEC", pos: 1 },
     { timeh: 0, timem: 20, times: 21, title: "Retrospekcje", pos: -1 },
     { timeh: 0, timem: 21, times: 54, title: "", pos: 0 }
     ];

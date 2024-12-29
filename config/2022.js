@@ -2,9 +2,8 @@
 //Main configuration (behaviour)
 let config = {
     multiplicationFactor: 2, //change resolution to achieve better antialiasing 
-    record: true,      //swith recording on - uses capture.js and works under Chrome only. As a result webm file will be saved
-    record: true,      //swith recording on - uses capture.js and works under Chrome only. As a result webm file will be saved
-    test: false,         //swith testing on - displays smaller and more visible circle of timeline, time goes faster
+    record: false,      //swith recording on - uses capture.js and works under Chrome only. As a result webm file will be saved
+    test: true,         //swith testing on - displays smaller and more visible circle of timeline, time goes faster
     filename: "2022launcher",   //filename to save movie
     timeStart: 0,       //start time in seconds - should be left as 0
     timeEnd: 18*60+52,      //1314 end time in senconds - how long timeline will be animated

@@ -12,7 +12,7 @@ let subs2 = csubtitles2;
 //initialization of globals
 // let time = config.timeStart;
 // let frame = 0;
-let points = []; //filtered list of points on timeline
+let points = []; //augmented points - used for execution
 let saved = false;
 let started = false;
 let transparency = (config.format=='transparentpng');
@@ -59,8 +59,6 @@ function setup() {
         cposy = radius * 2.5;
     }
 
-    switchShape();
-    console.log("Chosen method: ", method);
 
     console.log("Setup points");
     //configure points
@@ -75,12 +73,18 @@ function setup() {
         if (!point.size){
             point.size = config.defaultTextSize*multiplicationFactor;
         }
-        if (point.time <= config.timeEnd + 2) {
-            points.push(point);
-        }
         point.index = index; 
+        if (point.time <= config.timeEnd + 2) {
+            // console.log('point', point);
+            points.push(new LauncherPoint(point));
+        }
         index++;
     });
+    cpoints = undefined; //let force to use points instead cpoints.
+    switchShape();
+    console.log("Chosen method: ", method);
+
+
 
     console.log("Setup subtitles");
     //configure subtitles
@@ -147,9 +151,13 @@ function switchShape(a, b, c, h, s, cv, ll){
             method = new Arc();
             break;
         case "bulk":
-            method = new Bulk(cpoints);
+            method = new Bulk(points);
             break;
-    }
+        case "bulk2":
+            method = new Bulk2(points);
+            // console.log('points po bulk2', points)
+            break;
+        }
 }
 
 function drawMainLine(){

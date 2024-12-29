@@ -4,7 +4,7 @@ let config = {
     multiplicationFactor: 1, //change resolution to achieve better antialiasing 
     record: false,      //swith recording on - uses capture.js and works under Chrome only. As a result webm file will be saved
     test: true,         //swith testing on - displays smaller and more visible circle of timeline, time goes faster
-    filename: "2023launcher",   //filename to save movie
+    filename: "2024launcher",   //filename to save movie
     timeStart: 0,       //start time in seconds - should be left as 0
     timeEnd: 23*60+11,      //1314 end time in senconds - how long timeline will be animated
     density: 6,         //distance beetween points
@@ -21,7 +21,7 @@ let config = {
     subtitle2Pos: 700,           //position of subtitles
     fps: 10,          //number of frames per seconds on movie
     format: 'transparentpng',   //output file format: png-set of pngs, webm - webm, transparentpng - set of pngs with transparent background
-    mainShape: "bulk"         //shape of launcher available options: circle, hline, sin, curved, lineleft, arc, bulk of sinusoids
+    mainShape: "bulk2"         //shape of launcher available options: circle, hline, sin, curved, lineleft, arc, bulk of sinusoids
 }
 
 

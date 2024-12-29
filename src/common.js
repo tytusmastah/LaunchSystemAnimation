@@ -1,3 +1,50 @@
+//index of the last point which was desactivated
+var lastInactiveIndex = -1
+
+class LauncherSinusoid{
+    amplitude; //height
+    amplitudeChangeSpeed; 
+    len; //wave length
+    speed;
+    spread; 
+    spreadChangeSpeed; 
+    constructor(sp, spr, len, amp, spr_sp, amp_sp ){
+        this.amplitude = amp;
+        this.amplitudeChangeSpeed = amp_sp;
+        this.len = len;
+        this.speed = sp; 
+        this.spread = spr;
+        this.spreadChangeSpeed = spr_sp;
+    }
+}
+
+class LauncherPoint {
+    index; //sequence number
+    pos; //position - delta
+    size; //point size
+    time; //time of point
+    timeh; //time in hours
+    timem; //time in minutes
+    times; //time in seconds
+    title; //title of point
+    sinusoid; //sinusoidData
+
+    
+
+    constructor(cpoint){
+        console.log('cpoint', cpoint);
+
+        this.index = cpoint.index;
+        this.pos = cpoint.pos;
+        this.size = cpoint.size;
+        this.time = cpoint.time;
+        this.timeh = cpoint.timeh;
+        this.timem = cpoint.timem;
+        this.times = cpoint.times;
+        this.title = cpoint.title;
+    }
+}
+
 
 function drawSubtitle() {
     strokeWeight(1);
@@ -77,9 +124,19 @@ function drawTimer() {
 }
 
 function drawPoints() {
+    // console.log('points', points);
+    lastInactiveIndex=-1;
+
+    //find the last inactive point
+    points.forEach((point) => {
+        if (time.time > point.time){
+            lastInactiveIndex=point.index;
+        }
+    });
     points.forEach((point) => {
         drawPoint(point);
     });
+
 }
 
 function indicatorOnPoint(point){
@@ -104,7 +161,14 @@ function drawPointText(point, str){
     stroke(128);
     fill(str);    
     textSize(point.size);
-    text(point.title, 0, 0)
+    let curText = point.title;
+    if (config.test){
+        curText+='\n'+point.index;
+        if (lastInactiveIndex === point.index){
+            curText+='\nlast';
+        }
+    }
+    text(curText, 0, 0)
 }
 
 
